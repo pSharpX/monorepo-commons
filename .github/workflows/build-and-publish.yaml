@@ -36,6 +36,10 @@ jobs:
           restore-keys: |
             gradle-${{ runner.os }}-
 
+      - name: Print Working Dir 1
+        run: |
+          pwd
+
       - name: Build with Gradle
         run: ./gradlew build
         working-directory: ./controlplane
@@ -59,11 +63,15 @@ jobs:
             type=raw,latest
             type=raw,${{ github.run_number }}
 
+      - name: Print Working Dir 2
+        run: |
+          pwd
+
       - name: Build and push Docker images
         uses: docker/build-push-action@v4
         with:
           context: ./controlplane
-          file: ./Dockerfile
+          #file: ./Dockerfile
           push: ${{ github.event_name != 'pull_request' }} # Don't push on PR
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
