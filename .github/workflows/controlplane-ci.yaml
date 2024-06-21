@@ -40,7 +40,7 @@ jobs:
 
       - name: Build with Gradle
         run: ./gradlew build
-        working-directory: ${{ vars.WORKING_DIRECTORY }}
+        working-directory: ${{ env.WORKING_DIRECTORY }}
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
@@ -64,7 +64,7 @@ jobs:
       - name: Build and push Docker images
         uses: docker/build-push-action@v4
         with:
-          context: ${{ vars.WORKING_DIRECTORY }}
+          context: ${{ env.WORKING_DIRECTORY }}
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
