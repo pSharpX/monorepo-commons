@@ -3,7 +3,6 @@ package com.onebank.taskmaster.controlplane.controller;
 import com.onebank.taskmaster.controlplane.model.CreateTaskRequest;
 import com.onebank.taskmaster.controlplane.model.SearchTaskParam;
 import com.onebank.taskmaster.controlplane.model.SearchTaskResponse;
-import com.onebank.taskmaster.controlplane.model.TaskDetails;
 import com.onebank.taskmaster.controlplane.service.CreateTask;
 import com.onebank.taskmaster.controlplane.service.SearchTask;
 import com.onebank.taskmaster.controlplane.service.ToggleTaskStatus;
@@ -11,6 +10,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,6 +45,12 @@ public class TaskController {
 	@ResponseStatus(HttpStatus.OK)
 	public void toggleTaskStatus(@PathVariable String taskId) {
 		this.toggleTaskStatus.toggle(taskId);
+	}
+
+	@DeleteMapping("/{taskId}")
+	@ResponseStatus(HttpStatus.OK)
+	public String deleteTask(@PathVariable String taskId) {
+		return "task deleted successfully";
 	}
 
 }
