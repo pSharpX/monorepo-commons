@@ -1,4 +1,4 @@
-name: [TaskMaster] Build and Publish Notifier
+name: Build and Publish Notifier
 
 on:
   push:

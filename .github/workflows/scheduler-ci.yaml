@@ -1,4 +1,4 @@
-name: [TaskMaster] Build and Publish Scheduler
+name: Build and Publish Scheduler
 
 on:
   push:
