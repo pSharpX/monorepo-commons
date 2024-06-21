@@ -6,12 +6,11 @@ on:
       - main
     paths:
       - 'scheduler/**'
-  workflow_dispatch: 
 
 env:
   DOCKER_HUB_USER: ${{ vars.DOCKER_HUB_USER }}
   DOCKER_IMAGE_NAME: scheduler
-  WORKING_DIRECTORY: ./scheduler
+  WORKING_DIRECTORY: './scheduler'
 
 jobs:
   build:

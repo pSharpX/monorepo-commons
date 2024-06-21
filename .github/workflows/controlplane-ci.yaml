@@ -6,12 +6,11 @@ on:
       - main
     paths:
       - 'controlplane/**'
-  workflow_dispatch:
 
 env:
   DOCKER_HUB_USER: ${{ vars.DOCKER_HUB_USER }}
   DOCKER_IMAGE_NAME: controlplane
-  WORKING_DIRECTORY: ./controlplane
+  WORKING_DIRECTORY: './controlplane'
 
 jobs:
   build:

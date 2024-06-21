@@ -6,12 +6,11 @@ on:
       - main
     paths:
       - 'notifier/**'
-  workflow_dispatch: 
 
 env:
   DOCKER_HUB_USER: ${{ vars.DOCKER_HUB_USER }}
   DOCKER_IMAGE_NAME: notifier
-  WORKING_DIRECTORY: ./notifier
+  WORKING_DIRECTORY: './notifier'
 
 jobs:
   build:
