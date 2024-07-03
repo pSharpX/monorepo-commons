@@ -1,5 +1,6 @@
 package com.onebank.taskmaster.controlplane.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.validation.constraints.NotBlank;
@@ -17,7 +18,7 @@ public class CreateTaskRequest {
 	private String taskTitle;
 	@NotBlank
 	private String taskDescription;
-	private List<String> tags;
+	private List<String> tags = new ArrayList<>();
 	private Integer weight = 0;
 	@Setter(AccessLevel.NONE)
 	private TaskCreationStatus status = TaskCreationStatus.PENDING;

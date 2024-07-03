@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class SearchTaskService implements SearchTask {
+public class SearchFakeTaskService implements SearchTask {
 
 	@Override
 	public SearchTaskResponse search(@NonNull SearchTaskParam param) {

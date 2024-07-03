@@ -2,6 +2,7 @@ package com.onebank.taskmaster.controlplane.converter;
 
 import com.onebank.taskmaster.controlplane.entity.TaskEntity;
 import com.onebank.taskmaster.controlplane.model.CreateTaskRequest;
+import com.onebank.taskmaster.controlplane.model.TaskStatus;
 import lombok.NonNull;
 import org.springframework.stereotype.Component;
 
@@ -13,8 +14,8 @@ public class CreateTaskRequestConverter implements ConvertTo<CreateTaskRequest, 
                 .title(input.getTaskTitle())
                 .description(input.getTaskDescription())
                 .weight(input.getWeight())
-                //.tags(input.getTags())
-                //.status(input.getStatus())
+                .progressStatus(TaskStatus.TODO)
+                .status(input.getStatus())
                 .build();
     }
 }
