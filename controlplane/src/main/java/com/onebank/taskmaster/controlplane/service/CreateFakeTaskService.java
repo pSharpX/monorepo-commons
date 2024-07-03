@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class CreateTaskService implements CreateTask {
+public class CreateFakeTaskService implements CreateTask {
 	@Override
 	public String createNewTask(@NonNull CreateTaskRequest task) {
 		return UUID.randomUUID().toString();
