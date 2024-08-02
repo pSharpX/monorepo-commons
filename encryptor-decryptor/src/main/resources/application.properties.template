@@ -1,0 +1,8 @@
+
+encryptor-decryptor.provider.cloud-kms.enabled=true
+# use only if cloud-kms is enabled
+encryptor-decryptor.provider.cloud-kms.projectId=
+encryptor-decryptor.provider.cloud-kms.locationId=
+encryptor-decryptor.provider.cloud-kms.keyRingId=
+encryptor-decryptor.provider.cloud-kms.keyId=
+encryptor-decryptor.provider.cloud-kms.serviceAccountKeyPath=
