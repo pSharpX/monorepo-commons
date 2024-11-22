@@ -4,7 +4,7 @@ import com.onebank.taskmaster.controlplane.model.CreateTaskRequest;
 import com.onebank.taskmaster.controlplane.model.SearchTaskParam;
 import com.onebank.taskmaster.controlplane.model.SearchTaskResponse;
 import com.onebank.taskmaster.controlplane.service.CreateTask;
-import com.onebank.taskmaster.controlplane.service.SearchTask;
+import com.onebank.taskmaster.controlplane.service.SearchTaskFacade;
 import com.onebank.taskmaster.controlplane.service.ToggleTaskStatus;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TaskController {
 
 	private final CreateTask createTaskService;
-	private final SearchTask searchTaskService;
+	private final SearchTaskFacade searchTaskFacadeService;
 	private final ToggleTaskStatus toggleTaskStatus;
 
 	@PostMapping
@@ -38,7 +38,7 @@ public class TaskController {
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
 	public SearchTaskResponse searchTasks(@Valid SearchTaskParam param) {
-		return searchTaskService.search(param);
+		return searchTaskFacadeService.search(param);
 	}
 
 	@PutMapping("/{taskId}")

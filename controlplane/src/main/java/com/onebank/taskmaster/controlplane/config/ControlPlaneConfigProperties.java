@@ -14,11 +14,19 @@ import org.springframework.validation.annotation.Validated;
 @Validated
 public class ControlPlaneConfigProperties {
     private Database database;
+    private Cache cache;
 
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
     static class Database {
+        private Boolean enabled = false;
+    }
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    static class Cache {
         private Boolean enabled = false;
     }
 }
