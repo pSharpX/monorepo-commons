@@ -14,4 +14,5 @@ public class SearchTaskParam {
 	@NotBlank
 	private String title;
 	private List<String> tags;
+	private String status;
 }
