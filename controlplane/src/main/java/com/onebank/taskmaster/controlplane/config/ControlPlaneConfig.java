@@ -32,4 +32,10 @@ public class ControlPlaneConfig {
     public UpdateTaskStatus updateTaskStatusService(TaskRepository taskRepository) {
         return new UpdatePersistentTaskStatusService(taskRepository);
     }
+
+    @Bean
+    @Primary
+    public UpdateTask provideUpdateTaskService(TaskRepository taskRepository, TagRepository tagRepository) {
+        return new UpdatePersistentTaskService(taskRepository, tagRepository);
+    }
 }

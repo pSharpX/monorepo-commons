@@ -15,8 +15,8 @@ public class UpdatePersistentTaskStatusService implements UpdateTaskStatus {
     private final TaskRepository taskRepository;
 
     @Override
-    public void changeStatus(@NonNull String taskId, @NonNull TaskStatus taskStatus) {
-        TaskEntity taskEntity = taskRepository.findById(Long.valueOf(taskId))
+    public void changeStatus(@NonNull Long taskId, @NonNull TaskStatus taskStatus) {
+        TaskEntity taskEntity = taskRepository.findById(taskId)
                 .orElseThrow(() -> new ResourceNotFoundException(ExceptionConstantsUtils.NOT_FOUND, "task was not found"));
 
         log.debug("Updating task [{}] status to [{}]", taskId, taskStatus.getName());

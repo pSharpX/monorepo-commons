@@ -8,12 +8,14 @@ import com.onebank.taskmaster.controlplane.repository.TagRepository;
 import com.onebank.taskmaster.controlplane.repository.TaskRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
+@Slf4j
 public class CreatePersistentTaskService implements CreateTask {
 	private final TaskRepository taskRepository;
 	private final TagRepository tagRepository;
@@ -22,6 +24,7 @@ public class CreatePersistentTaskService implements CreateTask {
 	@Override
 	@Transactional
 	public String createNewTask(@NonNull CreateTaskRequest task) {
+		log.debug("Creating new task with title [{}]", task.getTaskTitle());
 		TaskEntity entity = taskRepository.save(converter.convert(task));
 		Set<TagEntity> tags = task.getTags().stream()
 				.map(tagName -> tagRepository.findByName(tagName)

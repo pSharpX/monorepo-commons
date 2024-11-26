@@ -4,9 +4,11 @@ import com.onebank.taskmaster.controlplane.model.CreateTaskRequest;
 import com.onebank.taskmaster.controlplane.model.SearchTaskParam;
 import com.onebank.taskmaster.controlplane.model.SearchTaskResponse;
 import com.onebank.taskmaster.controlplane.model.TaskStatus;
+import com.onebank.taskmaster.controlplane.model.UpdateTaskRequest;
 import com.onebank.taskmaster.controlplane.model.validators.TaskStatusCode;
 import com.onebank.taskmaster.controlplane.service.CreateTask;
 import com.onebank.taskmaster.controlplane.service.SearchTaskFacade;
+import com.onebank.taskmaster.controlplane.service.UpdateTask;
 import com.onebank.taskmaster.controlplane.service.UpdateTaskStatus;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -23,6 +25,7 @@ public class TaskController {
 	private final CreateTask createTaskService;
 	private final SearchTaskFacade searchTaskFacadeService;
 	private final UpdateTaskStatus updateTaskStatus;
+	private final UpdateTask updateTask;
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
@@ -38,8 +41,15 @@ public class TaskController {
 
 	@PatchMapping("/{taskId}/status/{taskStatus}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void toggleTaskStatus(@PathVariable String taskId, @Valid @PathVariable @NotNull @TaskStatusCode String taskStatus) {
+	public void toggleTaskStatus(@PathVariable Long taskId, @Valid @PathVariable @NotNull @TaskStatusCode String taskStatus) {
 		this.updateTaskStatus.changeStatus(taskId, TaskStatus.getByName(taskStatus));
+	}
+
+	@PutMapping("/{taskId}")
+	@ResponseStatus(HttpStatus.OK)
+	public void updateTask(@PathVariable @NotNull Long taskId, @RequestBody UpdateTaskRequest request) {
+		request.setId(taskId);
+		this.updateTask.update(request);
 	}
 
 	@DeleteMapping("/{taskId}")

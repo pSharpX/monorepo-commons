@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class UpdateFakeTaskStatusService implements UpdateTaskStatus {
     @Override
-    public void changeStatus(@NonNull String taskId, @NonNull TaskStatus taskStatus) {
+    public void changeStatus(@NonNull Long taskId, @NonNull TaskStatus taskStatus) {
         log.info("Updating task [{}] status to [{}]", taskId, taskStatus.getName());
     }
 }
