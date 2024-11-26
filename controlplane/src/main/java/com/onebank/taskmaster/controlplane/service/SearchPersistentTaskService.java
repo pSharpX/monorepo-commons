@@ -5,9 +5,12 @@ import com.onebank.taskmaster.controlplane.entity.TaskEntity;
 import com.onebank.taskmaster.controlplane.model.SearchTaskParam;
 import com.onebank.taskmaster.controlplane.model.SearchTaskResponse;
 import com.onebank.taskmaster.controlplane.model.TaskDetails;
+import com.onebank.taskmaster.controlplane.model.TaskStatus;
 import com.onebank.taskmaster.controlplane.repository.TaskRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+
+import java.util.Optional;
 
 @RequiredArgsConstructor
 public class SearchPersistentTaskService implements SearchTask {
@@ -16,6 +19,10 @@ public class SearchPersistentTaskService implements SearchTask {
 
 	@Override
 	public SearchTaskResponse search(@NonNull SearchTaskParam param) {
-		return new SearchTaskResponse(taskRepository.findByTitle(param.getTitle()).stream().map(converter::convert).toList());
+		TaskStatus taskStatus = Optional.ofNullable(param.getStatus())
+				.map(TaskStatus::getByName)
+				.orElse(null);
+		return new SearchTaskResponse(taskRepository.findByProgressStatusAndTitleContainingIgnoreCase(taskStatus , param.getTitle())
+				.stream().map(converter::convert).toList());
 	}
 }

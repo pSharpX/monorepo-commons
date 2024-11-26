@@ -10,7 +10,9 @@ import java.util.Objects;
 public class TaskStatusConverter implements AttributeConverter<TaskStatus, String> {
     @Override
     public String convertToDatabaseColumn(TaskStatus taskStatus) {
-        Objects.requireNonNull(taskStatus, "taskStatus property must be not null");
+        if (Objects.isNull(taskStatus)) {
+            return null;
+        }
         return taskStatus.getName();
     }
 

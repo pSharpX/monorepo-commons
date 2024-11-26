@@ -19,4 +19,8 @@ public enum TaskStatus {
 				.findFirst()
 				.orElse(null);
 	}
+
+	public static boolean isValid(String name) {
+		return Stream.of(values()).anyMatch(taskStatus -> taskStatus.getName().equals(name));
+	}
 }
