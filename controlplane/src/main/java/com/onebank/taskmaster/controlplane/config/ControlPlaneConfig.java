@@ -26,4 +26,10 @@ public class ControlPlaneConfig {
     public SearchTask searchPersistentTaskService(TaskRepository taskRepository, TaskDetailsConverter converter) {
         return new SearchPersistentTaskService(taskRepository, converter);
     }
+
+    @Bean
+    @Primary
+    public UpdateTaskStatus updateTaskStatusService(TaskRepository taskRepository) {
+        return new UpdatePersistentTaskStatusService(taskRepository);
+    }
 }

@@ -3,22 +3,17 @@ package com.onebank.taskmaster.controlplane.controller;
 import com.onebank.taskmaster.controlplane.model.CreateTaskRequest;
 import com.onebank.taskmaster.controlplane.model.SearchTaskParam;
 import com.onebank.taskmaster.controlplane.model.SearchTaskResponse;
+import com.onebank.taskmaster.controlplane.model.TaskStatus;
+import com.onebank.taskmaster.controlplane.model.validators.TaskStatusCode;
 import com.onebank.taskmaster.controlplane.service.CreateTask;
 import com.onebank.taskmaster.controlplane.service.SearchTaskFacade;
-import com.onebank.taskmaster.controlplane.service.ToggleTaskStatus;
+import com.onebank.taskmaster.controlplane.service.UpdateTaskStatus;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/tasks")
@@ -27,7 +22,7 @@ public class TaskController {
 
 	private final CreateTask createTaskService;
 	private final SearchTaskFacade searchTaskFacadeService;
-	private final ToggleTaskStatus toggleTaskStatus;
+	private final UpdateTaskStatus updateTaskStatus;
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
@@ -41,10 +36,10 @@ public class TaskController {
 		return searchTaskFacadeService.search(param);
 	}
 
-	@PutMapping("/{taskId}")
-	@ResponseStatus(HttpStatus.OK)
-	public void toggleTaskStatus(@PathVariable String taskId) {
-		this.toggleTaskStatus.toggle(taskId);
+	@PatchMapping("/{taskId}/status/{taskStatus}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void toggleTaskStatus(@PathVariable String taskId, @Valid @PathVariable @NotNull @TaskStatusCode String taskStatus) {
+		this.updateTaskStatus.changeStatus(taskId, TaskStatus.getByName(taskStatus));
 	}
 
 	@DeleteMapping("/{taskId}")
