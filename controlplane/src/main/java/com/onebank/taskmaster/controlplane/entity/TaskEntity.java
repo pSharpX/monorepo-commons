@@ -1,35 +1,32 @@
 package com.onebank.taskmaster.controlplane.entity;
 
+import com.onebank.taskmaster.controlplane.entity.listeners.TaskCreationListener;
 import com.onebank.taskmaster.controlplane.model.TaskCreationStatus;
 import com.onebank.taskmaster.controlplane.model.TaskStatus;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "tasks")
-@Getter
-@Setter
+@Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@EntityListeners(value = {AuditingEntityListener.class, TaskCreationListener.class})
 public class TaskEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -59,4 +56,21 @@ public class TaskEntity {
 
     @NotNull
     private TaskCreationStatus status = TaskCreationStatus.PENDING;
+
+    @Column(columnDefinition = "boolean default true", insertable = false)
+    private Boolean enabled = true;
+
+    @Column(updatable = false)
+    @CreatedBy
+    private String createdBy;
+
+    @Column(updatable = false)
+    @CreatedDate
+    private LocalDateTime createdDate;
+
+    @LastModifiedBy
+    private String updatedBy;
+
+    @LastModifiedDate
+    private LocalDateTime updateDatetime;
 }

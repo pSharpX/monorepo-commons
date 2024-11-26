@@ -11,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -23,14 +22,13 @@ public class CreatePersistentTaskService implements CreateTask {
 
 	@Override
 	@Transactional
-	public String createNewTask(@NonNull CreateTaskRequest task) {
-		log.debug("Creating new task with title [{}]", task.getTaskTitle());
-		TaskEntity entity = taskRepository.save(converter.convert(task));
-		Set<TagEntity> tags = task.getTags().stream()
+	public String createNewTask(@NonNull CreateTaskRequest request) {
+		log.debug("Creating new task with title [{}]", request.getTaskTitle());
+		TaskEntity entity = taskRepository.save(converter.convert(request));
+		entity.setTags(request.getTags().stream()
 				.map(tagName -> tagRepository.findByName(tagName)
 						.orElse(new TagEntity(tagName)))
-				.collect(Collectors.toSet());
-		entity.setTags(tags);
+				.collect(Collectors.toSet()));
 		taskRepository.save(entity);
 		return String.valueOf(entity.getId());
 	}
