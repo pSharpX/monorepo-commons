@@ -40,4 +40,10 @@ public class ControlPlaneConfig {
     public UpdateTask provideUpdateTaskService(TaskRepository taskRepository, TagRepository tagRepository) {
         return new UpdatePersistentTaskService(taskRepository, tagRepository);
     }
+
+    @Bean
+    @Primary
+    public DeleteTask provideDeleteTaskService(TaskRepository taskRepository) {
+        return new DeletePersistentTaskService(taskRepository);
+    }
 }

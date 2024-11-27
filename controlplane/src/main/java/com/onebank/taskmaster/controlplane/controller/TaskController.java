@@ -7,6 +7,7 @@ import com.onebank.taskmaster.controlplane.model.TaskStatus;
 import com.onebank.taskmaster.controlplane.model.UpdateTaskRequest;
 import com.onebank.taskmaster.controlplane.model.validators.TaskStatusCode;
 import com.onebank.taskmaster.controlplane.service.CreateTask;
+import com.onebank.taskmaster.controlplane.service.DeleteTask;
 import com.onebank.taskmaster.controlplane.service.SearchTaskFacade;
 import com.onebank.taskmaster.controlplane.service.UpdateTask;
 import com.onebank.taskmaster.controlplane.service.UpdateTaskStatus;
@@ -26,6 +27,7 @@ public class TaskController {
 	private final SearchTaskFacade searchTaskFacadeService;
 	private final UpdateTaskStatus updateTaskStatus;
 	private final UpdateTask updateTask;
+	private final DeleteTask deleteTask;
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
@@ -54,8 +56,8 @@ public class TaskController {
 
 	@DeleteMapping("/{taskId}")
 	@ResponseStatus(HttpStatus.OK)
-	public String deleteTask(@PathVariable String taskId) {
-		return "task deleted successfully";
+	public void deleteTask(@PathVariable @NotNull Long taskId) {
+		deleteTask.delete(taskId);
 	}
 
 }
