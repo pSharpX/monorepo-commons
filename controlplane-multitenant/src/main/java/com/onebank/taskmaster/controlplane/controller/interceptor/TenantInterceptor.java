@@ -1,5 +1,6 @@
 package com.onebank.taskmaster.controlplane.controller.interceptor;
 
+import com.onebank.taskmaster.controlplane.config.OnDatabaseIntegration;
 import com.onebank.taskmaster.controlplane.config.TenantContext;
 import com.onebank.taskmaster.controlplane.model.AppIdentifier;
 import jakarta.servlet.http.HttpServletRequest;
@@ -10,8 +11,9 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import java.util.Optional;
 
-@Component
 @Order(1)
+@Component
+@OnDatabaseIntegration
 public class TenantInterceptor implements HandlerInterceptor {
     private static final String APPLICATION_ID_HEADER_NAME = "x-application-id";
 

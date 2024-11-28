@@ -1,5 +1,6 @@
 package com.onebank.taskmaster.controlplane.config;
 
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -20,5 +21,7 @@ public class ControlPlaneConfigProperties {
     @NoArgsConstructor
     static class Database {
         private Boolean enabled = false;
+        @NotEmpty
+        private String defaultTenant;
     }
 }

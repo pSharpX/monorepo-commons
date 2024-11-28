@@ -9,7 +9,6 @@ public class TenantRoutingDataSource extends AbstractRoutingDataSource {
     @Override
     protected Object determineCurrentLookupKey() {
         return Optional.ofNullable(TenantContext.getCurrentTenant())
-                .map(AppIdentifier::getCode)
-                .orElse(null);
+                .orElse(AppIdentifier.CONTROL_PLANE_1);
     }
 }

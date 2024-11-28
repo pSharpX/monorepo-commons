@@ -78,3 +78,8 @@ For running sonarqube (first install sonarqube in docker, and generate a token):
 ```
 ./gradlew clean test sonarqube -Dsonar.projectKey=onebank_controlplane -Dsonar.host.url=http://localhost:9000 -Dsonar.login=<your_token>
 ```
+
+Fix gradlew permission issue:
+```
+git update-index --chmod=+x gradlew
+```

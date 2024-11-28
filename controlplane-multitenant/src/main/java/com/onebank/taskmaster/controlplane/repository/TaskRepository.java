@@ -1,6 +1,6 @@
 package com.onebank.taskmaster.controlplane.repository;
 
-import com.onebank.taskmaster.controlplane.config.ConditionalOnDatabaseEnabled;
+import com.onebank.taskmaster.controlplane.config.OnDatabaseIntegration;
 import com.onebank.taskmaster.controlplane.entity.TaskEntity;
 import com.onebank.taskmaster.controlplane.model.TaskStatus;
 import jakarta.annotation.Nullable;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-@ConditionalOnDatabaseEnabled
+@OnDatabaseIntegration
 public interface TaskRepository extends JpaRepository<TaskEntity, Long> {
     List<TaskEntity> findByTitle(String title);
 

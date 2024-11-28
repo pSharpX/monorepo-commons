@@ -1,6 +1,8 @@
 spring.application.name=control-plane-multitenant
 server.port=8080
+
 control-plane.database.enabled=false
+control-plane.database.defaultTenant=control-plane-1
 
 task-master.datasource.control-plane-1.hikari.connectionTimeout=30000
 task-master.datasource.control-plane-1.hikari.idleTimeout=600000
@@ -17,6 +19,8 @@ task-master.datasource.control-plane-2.url=jdbc:postgresql://localhost:5432/your
 task-master.datasource.control-plane-2.username=your_db_username
 task-master.datasource.control-plane-2.password=your_db_password
 task-master.datasource.control-plane-2.driver-class-name=org.postgresql.Driver
+
+spring.jpa.hibernate.ddl-auto=update
 
 management.endpoints.web.base-path=/actuator
 management.endpoints.web.exposure.include=*
