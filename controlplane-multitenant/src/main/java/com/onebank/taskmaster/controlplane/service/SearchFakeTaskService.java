@@ -1,19 +1,19 @@
 package com.onebank.taskmaster.controlplane.service;
 
+import com.onebank.taskmaster.controlplane.config.ConditionalOnMockEnabled;
 import com.onebank.taskmaster.controlplane.model.SearchTaskParam;
 import com.onebank.taskmaster.controlplane.model.SearchTaskResponse;
 import com.onebank.taskmaster.controlplane.model.TaskDetails;
 import com.onebank.taskmaster.controlplane.model.TaskStatus;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@ConditionalOnMissingBean(value = SearchTask.class)
+@ConditionalOnMockEnabled
 public class SearchFakeTaskService implements SearchTask {
 
 	@Override
