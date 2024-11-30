@@ -1,4 +1,4 @@
-package com.onebank.taskmaster.controlplane.converter;
+package com.onebank.taskmaster.converter;
 
 import lombok.NonNull;
 

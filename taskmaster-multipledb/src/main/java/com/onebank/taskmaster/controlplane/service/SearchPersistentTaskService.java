@@ -1,6 +1,6 @@
 package com.onebank.taskmaster.controlplane.service;
 
-import com.onebank.taskmaster.controlplane.converter.ConvertTo;
+import com.onebank.taskmaster.converter.ConvertTo;
 import com.onebank.taskmaster.controlplane.entity.TaskEntity;
 import com.onebank.taskmaster.controlplane.model.SearchTaskParam;
 import com.onebank.taskmaster.controlplane.model.SearchTaskResponse;
