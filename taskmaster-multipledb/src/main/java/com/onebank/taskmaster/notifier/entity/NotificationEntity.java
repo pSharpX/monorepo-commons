@@ -1,7 +1,7 @@
 package com.onebank.taskmaster.notifier.entity;
 
 import com.onebank.taskmaster.notifier.model.NotificationStatus;
-import com.onebank.taskmaster.notifier.model.NotificationType;
+import com.onebank.taskmaster.notifier.model.NotificationChannel;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
@@ -47,7 +47,7 @@ public class NotificationEntity {
     private String message;
 
     @NotNull
-    private NotificationType type = NotificationType.EMAIL;
+    private NotificationChannel channel = NotificationChannel.EMAIL;
 
     @NotNull
     private NotificationStatus status = NotificationStatus.CREATED;

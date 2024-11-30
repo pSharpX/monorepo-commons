@@ -1,4 +1,9 @@
 package com.onebank.taskmaster.notifier.repository;
 
-public interface NotificationRepository {
+import com.onebank.taskmaster.notifier.entity.NotificationEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface NotificationRepository extends JpaRepository<NotificationEntity, Long> {
 }
