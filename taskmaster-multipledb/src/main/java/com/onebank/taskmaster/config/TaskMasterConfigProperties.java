@@ -14,11 +14,20 @@ import org.springframework.validation.annotation.Validated;
 @Validated
 public class TaskMasterConfigProperties {
     private Database database;
+    private Notification notification;
 
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
     static class Database {
         private Boolean enabled = false;
+    }
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    static class Notification {
+        private Boolean enabled = false;
+        private String engine;
     }
 }

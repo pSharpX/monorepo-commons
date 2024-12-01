@@ -3,8 +3,8 @@ package com.onebank.taskmaster.notifier.service;
 import com.onebank.taskmaster.converter.ConvertTo;
 import com.onebank.taskmaster.notifier.entity.NotificationEntity;
 import com.onebank.taskmaster.notifier.model.CreateNotificationRequest;
-import com.onebank.taskmaster.notifier.model.senders.EmailNotification;
-import com.onebank.taskmaster.notifier.model.senders.Notification;
+import com.onebank.taskmaster.notifier.model.senders.EmailNotificationMessage;
+import com.onebank.taskmaster.notifier.model.senders.NotificationMessage;
 import com.onebank.taskmaster.notifier.repository.NotificationRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +27,7 @@ public class CreateNotificationService implements CreateNotification {
         log.debug("Creating new notification[{}] with title [{}]", request.getChannel(), request.getTitle());
         NotificationEntity notificationEntity = notificationRepository.save(converter.convert(request));
 
-        Notification notification = new EmailNotification();
+        NotificationMessage notification = new EmailNotificationMessage();
         channelResolver.resolve(notificationEntity.getChannel()).send(notification);
     }
 }

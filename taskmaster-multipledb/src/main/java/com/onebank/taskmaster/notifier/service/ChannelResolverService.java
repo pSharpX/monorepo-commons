@@ -1,7 +1,6 @@
 package com.onebank.taskmaster.notifier.service;
 
 import com.onebank.taskmaster.notifier.model.NotificationChannel;
-import com.onebank.taskmaster.notifier.model.senders.Notification;
 import com.onebank.taskmaster.notifier.service.senders.EmailNotificationSenderService;
 import com.onebank.taskmaster.notifier.service.senders.InAppNotificationSenderService;
 import com.onebank.taskmaster.notifier.service.senders.PushNotificationSenderService;
