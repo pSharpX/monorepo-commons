@@ -1,6 +1,6 @@
 package com.onebank.taskmaster.notifier.controller;
 
-import com.onebank.taskmaster.notifier.model.CreateNotificationRequest;
+import com.onebank.taskmaster.notifier.model.CreateTaskNotificationRequest;
 import com.onebank.taskmaster.notifier.service.CreateNotification;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/notifications")
 @RequiredArgsConstructor
-public class NotifierController {
+public class TaskMasterNotifierController {
 
 	private final CreateNotification createNotification;
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.ACCEPTED)
-	public void createNotification(@Valid @RequestBody CreateNotificationRequest request) {
+	public void createNotification(@Valid @RequestBody CreateTaskNotificationRequest request) {
 		createNotification.create(request);
 	}
 }

@@ -2,15 +2,15 @@ package com.onebank.taskmaster.notifier.converter;
 
 import com.onebank.taskmaster.converter.ConvertTo;
 import com.onebank.taskmaster.notifier.entity.NotificationEntity;
-import com.onebank.taskmaster.notifier.model.CreateNotificationRequest;
+import com.onebank.taskmaster.notifier.model.CreateTaskNotificationRequest;
 import com.onebank.taskmaster.notifier.model.NotificationChannel;
 import lombok.NonNull;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CreateNotificationRequestConverter implements ConvertTo<CreateNotificationRequest, NotificationEntity> {
+public class CreateNotificationRequestConverter implements ConvertTo<CreateTaskNotificationRequest, NotificationEntity> {
     @Override
-    public NotificationEntity convert(@NonNull CreateNotificationRequest input) {
+    public NotificationEntity convert(@NonNull CreateTaskNotificationRequest input) {
         return NotificationEntity.builder()
                 .user(input.getUser())
                 .title(input.getTitle())

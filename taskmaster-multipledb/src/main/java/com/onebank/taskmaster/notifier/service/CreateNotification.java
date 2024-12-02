@@ -1,8 +1,8 @@
 package com.onebank.taskmaster.notifier.service;
 
-import com.onebank.taskmaster.notifier.model.CreateNotificationRequest;
+import com.onebank.taskmaster.notifier.model.CreateTaskNotificationRequest;
 import lombok.NonNull;
 
 public interface CreateNotification {
-    void create(@NonNull CreateNotificationRequest request);
+    void create(@NonNull CreateTaskNotificationRequest request);
 }
