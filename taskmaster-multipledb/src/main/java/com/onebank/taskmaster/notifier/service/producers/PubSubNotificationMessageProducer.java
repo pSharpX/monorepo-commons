@@ -1,5 +1,6 @@
 package com.onebank.taskmaster.notifier.service.producers;
 
+import com.onebank.taskmaster.notifier.async.ConditionalOnPubSubEnabled;
 import com.onebank.taskmaster.notifier.model.senders.NotificationMessage;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 @Slf4j
+@ConditionalOnPubSubEnabled
 public class PubSubNotificationMessageProducer implements NotificationMessageProducer {
     @Override
     public void sendMessage(@NonNull NotificationMessage notification) {

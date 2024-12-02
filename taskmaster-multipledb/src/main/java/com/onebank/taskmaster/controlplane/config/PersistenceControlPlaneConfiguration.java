@@ -28,7 +28,7 @@ public class PersistenceControlPlaneConfiguration {
 
     @Primary
     @Bean
-    @ConfigurationProperties(prefix="task-master.datasource.control-plane.hibernate")
+    @ConfigurationProperties(prefix="task-master.datasource.control-plane.properties")
     public Properties controlPlaneHibernateProperties() {
         return new Properties();
     }

@@ -63,6 +63,84 @@ spring.datasource.driver-class-name=org.postgresql.Driver
 
 Do not upload the local version of the application.properties to the repository. Add to .gitignore file.
 
+## 1. Configure Broker (Notifications)
+Install docker and from docker hub pull one of the following supported brokers:
+
+### 1.1 kafka
+Pull apache/kafka image (apache/kafka:latest), start kafka container and test the connection
+https://hub.docker.com/r/apache/kafka
+
+Pull apache/kafka:latest image from Docker Hub
+```
+docker pull apache/kafka:latest
+```
+Run a container
+```
+docker run -d -p 9092:9092 --name broker apache/kafka:latest
+podman run -d -p 9092:9092 --name broker apache/kafka:latest
+``` 
+Open a shell in the broker container:
+```
+docker exec --workdir /opt/kafka/bin/ -it broker sh
+podman exec --workdir /opt/kafka/bin/ -it broker sh
+```
+A topic is a logical grouping of events in Kafka. From inside the container, create a topic called test-topic:
+```
+./kafka-topics.sh --bootstrap-server localhost:9092 --create --topic test-topic
+```
+To list topics in a kafka cluster run the following command in the container:
+```
+./kafka-topics.sh --bootstrap-server localhost:9092 --list
+```
+Write two string events into the test-topic topic using the console producer that ships with Kafka:
+```
+./kafka-console-producer.sh --bootstrap-server localhost:9092 --topic test-topic
+```
+This command will wait for input at a > prompt. Enter hello, press Enter, then world, and press Enter again. Enter Ctrl+C to exit the console producer.
+
+Now read the events in the test-topic topic from the beginning of the log:
+```
+./kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test-topic --from-beginning
+./kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic TASK_MASTER_NOTIFICATIONS --from-beginning
+```
+
+Download the project from the GitHub repo, get a copy from the src/main/resources/application.properties.template for local use and put in /src/main/resources.
+
+In the application.properties modify these properties as needed to match your kafka configuration:
+``` 
+task-master.notification.kafka.bootstrap.servers=localhost:9092
+```
+
+### 1.2 GCP PubSub
+Pull postgres image (postgres:latest), start postgres container and test the connection with any pgsql client
+
+Pull postgres image from Docker Hub
+```
+docker pull postgres:latest
+podman pull postgres:latest
+```
+Run a container
+```
+docker run --name some-postgres -p 5432:5432 -e POSTGRES_DB=controlplane_db -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+podman run --name some-postgres -p 5432:5432 -e POSTGRES_DB=controlplane_db -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+``` 
+Connect to the postgres instance and check connectivity
+```
+docker run -it --rm postgres:latest psql -h <host> -U <username> -d <database_name>
+podman run -it --rm postgres:latest psql -h localhost -U admin -d controlplane_db
+```  
+Download the project from the GitHub repo, get a copy from the src/main/resources/application.properties.template for local use and put in /src/main/resources.
+
+In the application.properties modify these properties as needed to match your sqlserver configuration:
+``` 
+spring.datasource.url=jdbc:postgresql://localhost:5432/controlplane_db
+spring.datasource.username=
+spring.datasource.password=
+spring.datasource.driver-class-name=org.postgresql.Driver
+```
+
+Do not upload the local version of the application.properties to the repository. Add to .gitignore file.
+
 ### Build and Test
 For building and running test:
 ```

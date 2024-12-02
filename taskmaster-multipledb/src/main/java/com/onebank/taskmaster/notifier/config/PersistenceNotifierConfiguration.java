@@ -26,7 +26,7 @@ import java.util.Properties;
 public class PersistenceNotifierConfiguration {
 
     @Bean
-    @ConfigurationProperties(prefix="task-master.datasource.notifier.hibernate")
+    @ConfigurationProperties(prefix="task-master.datasource.notifier.properties")
     public Properties notifierHibernateProperties() {
         return new Properties();
     }

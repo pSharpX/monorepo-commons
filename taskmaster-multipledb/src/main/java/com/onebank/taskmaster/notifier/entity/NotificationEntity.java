@@ -1,5 +1,6 @@
 package com.onebank.taskmaster.notifier.entity;
 
+import com.onebank.taskmaster.notifier.entity.listeners.NotificationCreationListener;
 import com.onebank.taskmaster.notifier.model.NotificationStatus;
 import com.onebank.taskmaster.notifier.model.NotificationChannel;
 import com.onebank.taskmaster.notifier.model.TaskNotificationType;
@@ -30,14 +31,14 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@EntityListeners(value = {AuditingEntityListener.class})
+@EntityListeners(value = {AuditingEntityListener.class, NotificationCreationListener.class})
 public class NotificationEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
-    private String user;
+    private String userIdentifier;
 
     @Length(max = 200)
     @NotNull

@@ -33,7 +33,7 @@ public class NotificationPreferenceEntity {
     private Long id;
 
     @NotNull
-    private String user;
+    private String userIdentifier;
 
     @Column(nullable = false)
     private boolean emailEnabled = true;
@@ -47,9 +47,8 @@ public class NotificationPreferenceEntity {
     @Column(nullable = false)
     private boolean inAppEnabled = true;
 
-    @Column(columnDefinition = "BIT default 1")
-    @NotNull
-    private boolean enabled = Boolean.TRUE;
+    @Column(columnDefinition = "boolean default true", insertable = false)
+    private Boolean enabled = true;
 
     @Column(updatable = false)
     @CreatedBy

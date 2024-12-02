@@ -26,6 +26,7 @@ public class CreateNotificationService implements CreateNotification {
     public void create(@NonNull CreateTaskNotificationRequest request) {
         log.debug("Creating new notification with title [{}]", request.getTitle());
         NotificationEntity notificationEntity = notificationRepository.save(converter.convert(request));
+        request.setId(notificationEntity.getId());
 
         NotificationMessage notification = builderResolver.resolve(notificationEntity.getNotificationType()).build(request);
         channelResolver.resolve(notificationEntity.getChannel()).send(notification);
