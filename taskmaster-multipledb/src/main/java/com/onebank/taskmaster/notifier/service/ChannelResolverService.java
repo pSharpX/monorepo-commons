@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-@SuppressWarnings("rawtypes")
 public class ChannelResolverService implements ChannelResolver {
     private final EmailNotificationSenderService emailNotificationSenderService;
     private final PushNotificationSenderService pushNotificationSenderService;
