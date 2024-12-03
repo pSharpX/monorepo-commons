@@ -4,7 +4,11 @@ import com.onebank.taskmaster.notifier.entity.listeners.NotificationCreationList
 import com.onebank.taskmaster.notifier.model.NotificationStatus;
 import com.onebank.taskmaster.notifier.model.NotificationChannel;
 import com.onebank.taskmaster.notifier.model.TaskNotificationType;
+import com.onebank.taskmaster.notifier.repository.converters.NotificationChannelConverter;
+import com.onebank.taskmaster.notifier.repository.converters.NotificationStatusConverter;
+import com.onebank.taskmaster.notifier.repository.converters.TaskNotificationTypeConverter;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
@@ -49,12 +53,15 @@ public class NotificationEntity {
     private String message;
 
     @NotNull
+    @Convert(converter = TaskNotificationTypeConverter.class)
     private TaskNotificationType notificationType;
 
     @NotNull
+    @Convert(converter = NotificationChannelConverter.class)
     private NotificationChannel channel = NotificationChannel.EMAIL;
 
     @NotNull
+    @Convert(converter = NotificationStatusConverter.class)
     private NotificationStatus status = NotificationStatus.CREATED;
 
     @Column(columnDefinition = "boolean default true", insertable = false)
