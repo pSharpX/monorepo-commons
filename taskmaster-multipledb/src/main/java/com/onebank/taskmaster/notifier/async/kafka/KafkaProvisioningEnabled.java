@@ -1,7 +1,6 @@
 package com.onebank.taskmaster.notifier.async.kafka;
 
 import com.onebank.taskmaster.notifier.async.ConditionalOnKafkaEnabled;
-import com.onebank.taskmaster.notifier.config.ConditionalOnNotificationEnabled;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 
 import java.lang.annotation.ElementType;

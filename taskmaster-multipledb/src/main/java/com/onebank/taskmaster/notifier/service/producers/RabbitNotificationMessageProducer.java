@@ -1,7 +1,6 @@
 package com.onebank.taskmaster.notifier.service.producers;
 
-import com.google.cloud.spring.pubsub.core.publisher.PubSubPublisherTemplate;
-import com.onebank.taskmaster.notifier.async.ConditionalOnPubSubEnabled;
+import com.onebank.taskmaster.notifier.async.ConditionalOnRabbitEnabled;
 import com.onebank.taskmaster.notifier.model.senders.NotificationMessage;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -11,10 +10,8 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-@ConditionalOnPubSubEnabled
-public class PubSubNotificationMessageProducer implements NotificationMessageProducer {
-    private final PubSubPublisherTemplate publisherTemplate;
-
+@ConditionalOnRabbitEnabled
+public class RabbitNotificationMessageProducer implements NotificationMessageProducer {
     @Override
     public void sendMessage(@NonNull NotificationMessage notification) {
         throw new UnsupportedOperationException();
