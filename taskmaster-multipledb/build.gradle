@@ -37,7 +37,7 @@ dependencies {
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0'
 	implementation 'org.postgresql:postgresql'
 	// https://github.com/GoogleCloudPlatform/cloud-sql-jdbc-socket-factory/blob/main/docs/jdbc.md#connecting-to-cloud-sql-using-jdbc
-	implementation 'com.google.cloud.sql:postgres-socket-factory:1.20.0'
+	// implementation 'com.google.cloud.sql:postgres-socket-factory:1.20.0'
 
 	implementation 'org.springframework.kafka:spring-kafka:3.3.0'
 	implementation 'com.google.cloud:spring-cloud-gcp-starter-pubsub'

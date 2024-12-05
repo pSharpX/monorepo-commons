@@ -52,8 +52,9 @@ task-master.notification.kafka.producer.metadata.max.age=${task-master.notificat
 task-master.notification.kafka.producer.connection.max.idle=${task-master.notification.kafka.connection.max.idle}
 
 task-master.notification.pubsub.projectId=
-task-master.notification.pubsub.locationId=
-task-master.notification.pubsub.serviceAccountKeyPath=
+task-master.notification.pubsub.topic=
+task-master.notification.pubsub.subscriptionId=
+task-master.notification.pubsub.serviceAccountKeyPath=classpath:<file_name>
 
 management.endpoints.web.base-path=/actuator
 management.endpoints.web.exposure.include=*
