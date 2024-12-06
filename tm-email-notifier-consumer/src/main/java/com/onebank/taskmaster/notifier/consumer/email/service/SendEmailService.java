@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class TaskChangeNotifierService implements NotifyTaskChange {
+public class SendEmailService implements SendEmail {
     @Override
     public void notifyTaskChange(@NonNull TaskChangeNotifierRequest request) {
       log.warn("Notification was sent");
