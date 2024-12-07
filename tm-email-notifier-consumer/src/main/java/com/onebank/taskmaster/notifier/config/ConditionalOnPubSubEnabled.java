@@ -1,4 +1,4 @@
-package com.onebank.taskmaster.notifier.async;
+package com.onebank.taskmaster.notifier.config;
 
 import com.onebank.taskmaster.config.ConditionalOnNotificationEnabled;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -11,6 +11,6 @@ import java.lang.annotation.Target;
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @ConditionalOnNotificationEnabled
-@ConditionalOnProperty(name = "task-master.notification.engine", havingValue = "kafka")
-public @interface ConditionalOnKafkaEnabled {
+@ConditionalOnProperty(name = "task-master.notification.engine", havingValue = "pubsub")
+public @interface ConditionalOnPubSubEnabled {
 }

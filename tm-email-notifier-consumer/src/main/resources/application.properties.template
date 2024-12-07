@@ -7,6 +7,21 @@ task-master.notification.consumer.channel=email|sms|push|in-app
 task-master.notification.consumer.provider=mailchimp|sendgrid|mailgun|mailjet|mailapi
 task-master.notification.consumer.provisioned=false
 
+task-master.notification.kafka.topic=TASK_MASTER_NOTIFICATIONS
+task-master.notification.kafka.bootstrap.servers=localhost:9092
+task-master.notification.kafka.key.deserializer=org.apache.kafka.common.serialization.StringDeserializer
+task-master.notification.kafka.value.deserializer=org.springframework.kafka.support.serializer.JsonDeserializer
+task-master.notification.kafka.request.timeout.ms=60000
+task-master.notification.kafka.retry.backoff.ms=500
+task-master.notification.kafka.metadata.max.age=180000
+task-master.notification.kafka.connection.max.idle=180000
+task-master.notification.kafka.consumer.topic=${task-master.notification.kafka.topic}
+task-master.notification.kafka.consumer.bootstrap.servers=${task-master.notification.kafka.bootstrap.servers}
+task-master.notification.kafka.consumer.key.deserializer=${task-master.notification.kafka.key.deserializer}
+task-master.notification.kafka.consumer.value.deserializer=${task-master.notification.kafka.value.deserializer}
+task-master.notification.kafka.consumer.client.dns.lookup=use_all_dns_ips
+#task-master.notification.kafka.consumer.group.id=
+
 management.endpoints.web.base-path=/actuator
 management.endpoints.web.exposure.include=*
 management.endpoints.web.exposure.exclude=env,auditevents
