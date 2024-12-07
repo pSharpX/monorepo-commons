@@ -4,6 +4,7 @@ import com.onebank.taskmaster.helpers.StreamUtils;
 import com.onebank.taskmaster.notifier.config.ConditionalOnKafkaEnabled;
 import com.onebank.taskmaster.notifier.model.NotificationChannel;
 import com.onebank.taskmaster.notifier.model.senders.NotificationMessage;
+import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -12,6 +13,8 @@ import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
+import org.springframework.kafka.listener.adapter.RecordFilterStrategy;
+import org.springframework.kafka.support.serializer.JsonDeserializer;
 
 import java.util.Properties;
 
@@ -28,14 +31,21 @@ public class KafkaConsumerConfig {
 
     @Bean
     public ConsumerFactory<String, NotificationMessage> consumerFactory(@Qualifier("kafkaConsumerProperties") Properties kafkaConsumerProperties) {
-        return new DefaultKafkaConsumerFactory<>(StreamUtils.streamConvert(kafkaConsumerProperties));
+        JsonDeserializer<NotificationMessage> deserializer = new JsonDeserializer<>(NotificationMessage.class, false);
+        deserializer.addTrustedPackages("*");
+        return new DefaultKafkaConsumerFactory<>(StreamUtils.streamConvert(kafkaConsumerProperties), new StringDeserializer(), deserializer);
+    }
+
+    @Bean(name = "emailNotificationRecordFilter")
+    public RecordFilterStrategy<String, NotificationMessage> emailNotificationRecordFilter() {
+        return (consumerRecord) -> !NotificationChannel.EMAIL.equals(consumerRecord.value().getChannel());
     }
 
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, NotificationMessage> kafkaListenerContainerFactory(ConsumerFactory<String, NotificationMessage> consumerFactory) {
         ConcurrentKafkaListenerContainerFactory<String, NotificationMessage> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory);
-        factory.setRecordFilterStrategy(consumerRecord -> NotificationChannel.EMAIL.equals(consumerRecord.value().getChannel()));
+        factory.setRecordFilterStrategy(emailNotificationRecordFilter());
         return factory;
     }
 }
