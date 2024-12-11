@@ -2,9 +2,12 @@ package com.onebank.taskmaster.notifier.consumer.email;
 
 import com.google.cloud.spring.autoconfigure.core.GcpContextAutoConfiguration;
 import com.google.cloud.spring.autoconfigure.pubsub.GcpPubSubAutoConfiguration;
+import com.onebank.taskmaster.notifier.config.ConditionalOnPubSubEnabled;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
 @EnableConfigurationProperties
@@ -14,6 +17,15 @@ public class EmailNotifierConsumerApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(EmailNotifierConsumerApplication.class, args);
+	}
+
+	@Bean
+	@ConditionalOnPubSubEnabled
+	public CommandLineRunner subscribeToPubSub() {
+		return args -> {
+			// Keep the application running to listen for messages
+			Thread.currentThread().join();
+		};
 	}
 
 }

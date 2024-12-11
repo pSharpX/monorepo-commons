@@ -22,6 +22,11 @@ task-master.notification.kafka.consumer.value.deserializer=${task-master.notific
 task-master.notification.kafka.consumer.client.dns.lookup=use_all_dns_ips
 #task-master.notification.kafka.consumer.group.id=
 
+task-master.notification.pubsub.projectId=
+task-master.notification.pubsub.topic=
+task-master.notification.pubsub.subscriptionId=
+task-master.notification.pubsub.serviceAccountKeyPath=classpath:<service_account_json_path>
+
 management.endpoints.web.base-path=/actuator
 management.endpoints.web.exposure.include=*
 management.endpoints.web.exposure.exclude=env,auditevents
