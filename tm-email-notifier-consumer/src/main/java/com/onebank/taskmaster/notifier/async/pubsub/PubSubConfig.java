@@ -10,7 +10,6 @@ import com.google.cloud.pubsub.v1.TopicAdminSettings;
 import com.google.cloud.spring.pubsub.support.converter.JacksonPubSubMessageConverter;
 import com.google.cloud.spring.pubsub.support.converter.PubSubMessageConverter;
 import com.google.pubsub.v1.ProjectSubscriptionName;
-import com.google.pubsub.v1.ProjectTopicName;
 import com.onebank.taskmaster.notifier.config.ConditionalOnPubSubEnabled;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -28,11 +27,6 @@ public class PubSubConfig {
     @Bean
     public ProjectSubscriptionName projectSubscription(@Qualifier("cloudPubSubProperties") Properties properties) {
         return ProjectSubscriptionName.of(properties.getProperty("projectId"), properties.getProperty("subscriptionId"));
-    }
-
-    @Bean
-    public ProjectTopicName projectTopic(@Qualifier("cloudPubSubProperties") Properties properties) {
-        return ProjectTopicName.of(properties.getProperty("projectId"), properties.getProperty("topic"));
     }
 
     @Bean
