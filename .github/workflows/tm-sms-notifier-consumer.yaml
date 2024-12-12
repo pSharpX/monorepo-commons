@@ -1,16 +1,16 @@
-name: Build and Publish TaskMaster Notifier
+name: Build and Publish TaskMaster SMS Consumer
 
 on:
   push:
     branches:
       - main
     paths:
-      - 'notifier/**'
+      - 'tm-sms-notifier-consumer/**'
 
 env:
   DOCKER_HUB_USER: ${{ vars.DOCKER_HUB_USER }}
-  DOCKER_IMAGE_NAME: notifier
-  WORKING_DIRECTORY: './notifier'
+  DOCKER_IMAGE_NAME: tm-sms-notifier-consumer
+  WORKING_DIRECTORY: './tm-sms-notifier-consumer'
 
 jobs:
   build:

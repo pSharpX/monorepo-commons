@@ -1,4 +1,4 @@
-name: Build and Publish Scheduler
+name: Build and Publish TaskMaster Scheduler
 
 on:
   push:

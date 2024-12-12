@@ -1,4 +1,4 @@
-name: Build and Publish Control Plane (Multitenant)
+name: Build and Publish TaskMaster Control Plane (Multitenant)
 
 on:
   push:
