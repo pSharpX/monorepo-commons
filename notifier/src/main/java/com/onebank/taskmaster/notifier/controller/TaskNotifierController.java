@@ -1,7 +1,5 @@
 package com.onebank.taskmaster.notifier.controller;
 
-import com.onebank.taskmaster.notifier.model.TaskChangeNotifierRequest;
-import com.onebank.taskmaster.notifier.service.NotifyTaskChange;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,12 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class TaskNotifierController {
 
-	private final NotifyTaskChange notifyTaskChangeService;
+
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.ACCEPTED)
-	public void notifyTaskChange(@Valid @RequestBody TaskChangeNotifierRequest request) {
-		notifyTaskChangeService.notifyTaskChange(request);
+	public void notifyTaskChange(@Valid @RequestBody String ss) {
+
 	}
 
 }
