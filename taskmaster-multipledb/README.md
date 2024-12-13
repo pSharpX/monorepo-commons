@@ -116,32 +116,8 @@ task-master.notification.kafka.bootstrap.servers=localhost:9092
 
 #### 1.2.1 Running PubSub in Local Environment using emulator
 [PubSub Local Emulator](https://medium.com/google-cloud/use-pub-sub-emulator-in-minikube-67cd1f289daf)
-Pull postgres image (postgres:latest), start postgres container and test the connection with any pgsql client
 
-Pull postgres image from Docker Hub
-```
-docker pull postgres:latest
-podman pull postgres:latest
-```
-Run a container
-```
-docker run --name some-postgres -p 5432:5432 -e POSTGRES_DB=controlplane_db -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=mysecretpassword -d postgres
-podman run --name some-postgres -p 5432:5432 -e POSTGRES_DB=controlplane_db -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=mysecretpassword -d postgres
-``` 
-Connect to the postgres instance and check connectivity
-```
-docker run -it --rm postgres:latest psql -h <host> -U <username> -d <database_name>
-podman run -it --rm postgres:latest psql -h localhost -U admin -d controlplane_db
-```  
-Download the project from the GitHub repo, get a copy from the src/main/resources/application.properties.template for local use and put in /src/main/resources.
-
-In the application.properties modify these properties as needed to match your sqlserver configuration:
-``` 
-spring.datasource.url=jdbc:postgresql://localhost:5432/controlplane_db
-spring.datasource.username=
-spring.datasource.password=
-spring.datasource.driver-class-name=org.postgresql.Driver
-```
+TBD
 
 #### 1.2.2 Provision Cloud PubSub in GCP
 
