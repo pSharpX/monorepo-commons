@@ -17,18 +17,19 @@ import lombok.Setter;
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.NAME,
         include = JsonTypeInfo.As.EXISTING_PROPERTY,
-        property = "type",
+        property = "channel",
         visible = true)
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = TaskCreatedNotificationMessage.class, name = "TASK_CREATED"),
-        @JsonSubTypes.Type(value = TaskDeletedNotificationMessage.class, names = "TASK_DELETED"),
-        @JsonSubTypes.Type(value = TaskCompletedNotificationMessage.class, names = "TASK_COMPLETED")
+        @JsonSubTypes.Type(value = EmailNotificationMessage.class, names = "EMAIL"),
+        @JsonSubTypes.Type(value = PushNotificationMessage.class, name = "PUSH"),
+        @JsonSubTypes.Type(value = SmsNotificationMessage.class, names = "SMS"),
+        @JsonSubTypes.Type(value = InAppNotificationMessage.class, names = "IN_APP")
 })
 public abstract class NotificationMessage extends AbstractMessage {
     private Long id;
-    private NotificationChannel channel;
     @Setter(AccessLevel.NONE)
-    private final TaskNotificationType type;
+    private final NotificationChannel channel;
+    private TaskNotificationType type;
     private String user;
     private String title;
     private String message;
