@@ -1,7 +1,6 @@
 package com.onebank.taskmaster.notifier.consumer.email.config.sendgrid;
 
 import com.onebank.taskmaster.notifier.consumer.email.config.ConditionalOnSendGridEnabled;
-import com.onebank.taskmaster.notifier.consumer.email.config.mailchimp.MailChimpClientRequestInterceptor;
 import feign.RequestInterceptor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -24,6 +23,6 @@ public class SendGridClientConfig {
 
 	@Bean
 	public RequestInterceptor basicAuthRequestInterceptor(@Qualifier("sendgridProperties") Properties properties) {
-		return new MailChimpClientRequestInterceptor(properties.getProperty("apikey"));
+		return new SendGridClientRequestInterceptor(properties.getProperty("apikey"));
 	}
 }

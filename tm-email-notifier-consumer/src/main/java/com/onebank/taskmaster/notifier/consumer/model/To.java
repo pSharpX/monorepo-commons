@@ -1,4 +1,4 @@
-package com.onebank.taskmaster.notifier.consumer.model.mailchimp;
+package com.onebank.taskmaster.notifier.consumer.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

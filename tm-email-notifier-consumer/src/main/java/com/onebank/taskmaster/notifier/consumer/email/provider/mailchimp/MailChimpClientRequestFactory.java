@@ -4,7 +4,7 @@ import com.onebank.taskmaster.notifier.consumer.email.config.ConditionalOnMailCh
 import com.onebank.taskmaster.notifier.consumer.model.mailchimp.GlobalMergeVar;
 import com.onebank.taskmaster.notifier.consumer.model.mailchimp.Message;
 import com.onebank.taskmaster.notifier.consumer.model.mailchimp.SendMessageWithTemplateRequest;
-import com.onebank.taskmaster.notifier.consumer.model.mailchimp.To;
+import com.onebank.taskmaster.notifier.consumer.model.To;
 import com.onebank.taskmaster.notifier.model.senders.EmailNotificationMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;

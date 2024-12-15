@@ -1,1 +1,0 @@
-package com.onebank.taskmaster.notifier.consumer.model;
