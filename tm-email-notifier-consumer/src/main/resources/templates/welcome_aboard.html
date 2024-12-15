@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to {{application_name}}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background-color: #007BFF;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .content {
+            padding: 20px;
+            text-align: left;
+            line-height: 1.6;
+        }
+        .content h2 {
+            color: #007BFF;
+            margin-top: 0;
+        }
+        .button-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .footer {
+            background-color: #f4f4f9;
+            text-align: center;
+            padding: 10px;
+            font-size: 12px;
+            color: #666;
+        }
+        .footer a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="email-container">
+    <div class="header">
+        <h1>Welcome to {{application_name}}!</h1>
+    </div>
+    <div class="content">
+        <h2>Hi {{username}},</h2>
+        <p>We’re thrilled to have you on board! At {{application_name}}, we strive to empower individuals and teams to achieve their goals by providing an intuitive, efficient, and collaborative platform for managing tasks, prioritizing work, and fostering productivity with ease and clarity.</p>
+        <p>Here’s what you can do next to get started:</p>
+        <ul>
+            <li>Explore your account dashboard.</li>
+            <li>Discover our features and tools.</li>
+            <li>Get in touch with our support team if you need any help.</li>
+        </ul>
+        <div class="button-container">
+            <a href="[CTA Link]" class="button">Get Started</a>
+        </div>
+        <p>We’re here to support you every step of the way. If you have any questions, feel free to reply to this email or visit our <a href="[Support Link]">Support Center</a>.</p>
+        <p>Welcome aboard, and let’s make great things happen!</p>
+    </div>
+    <div class="footer">
+        <p>© {{current_year}} {{application_name}}. All rights reserved.</p>
+        <p><a href="[Privacy Policy Link]">Privacy Policy</a> | <a href="[Unsubscribe Link]">Unsubscribe</a></p>
+    </div>
+</div>
+</body>
+</html>

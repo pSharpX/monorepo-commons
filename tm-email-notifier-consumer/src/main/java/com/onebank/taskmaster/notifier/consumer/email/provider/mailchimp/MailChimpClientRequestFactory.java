@@ -10,9 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 
 @Service
@@ -24,7 +22,7 @@ public class MailChimpClientRequestFactory {
 
     public SendMessageWithTemplateRequest build(EmailNotificationMessage notificationMessage) {
         SendMessageWithTemplateRequest mailChimpRequest = new SendMessageWithTemplateRequest();
-        mailChimpRequest.setTemplateName("template-test");
+        mailChimpRequest.setTemplateName(notificationMessage.getTemplateName());
 
         Message message = this.buildMessage(notificationMessage);
 
@@ -45,21 +43,12 @@ public class MailChimpClientRequestFactory {
     }
 
     private List<GlobalMergeVar> buildGlobalMergeVars(EmailNotificationMessage notificationDto) {
-        List<GlobalMergeVar> globalMergeVarList = new ArrayList<>();
-        for (Map.Entry<String, String> text : notificationDto.getVars().entrySet()) {
-            GlobalMergeVar globalMergeVar = new GlobalMergeVar();
-            globalMergeVar.setName(text.getKey());
-            globalMergeVar.setContent(text.getValue());
-            globalMergeVarList.add(globalMergeVar);
-        }
-        return globalMergeVarList;
+        return notificationDto.getVars().entrySet().stream()
+                .map(entry -> new GlobalMergeVar(entry.getKey(), entry.getValue()))
+                .toList();
     }
 
     private List<To> buildToList(EmailNotificationMessage notificationDto) {
-        To to = new To();
-        to.setName(notificationDto.getRecipientName());
-        to.setEmail(notificationDto.getRecipientEmail());
-
-        return List.of(to);
+        return List.of(new To(notificationDto.getRecipientEmail(), notificationDto.getRecipientName()));
     }
 }

@@ -30,7 +30,7 @@ task-master.channel.email.mailchimp.url=https://mandrillapp.com
 task-master.channel.email.mailchimp.apiVersion=/api/1.0
 task-master.channel.email.mailchimp.basePath=${task-master.channel.email.mailchimp.url}${task-master.channel.email.mailchimp.apiVersion}
 task-master.channel.email.mailchimp.apikey=
-task-master.channel.email.mailchimp.config.merge_language=mailchimp
+task-master.channel.email.mailchimp.config.merge_language=handlebars
 task-master.channel.email.mailchimp.from.email=
 task-master.channel.email.mailchimp.from.name=
 
