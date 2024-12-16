@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class TaskCompletedNotificationRequest extends TaskNotificationRequest {
+public class TaskCompletionReminderNotificationRequest extends TaskNotificationRequest {
     @NotNull
     private Long taskId;
     @NotEmpty

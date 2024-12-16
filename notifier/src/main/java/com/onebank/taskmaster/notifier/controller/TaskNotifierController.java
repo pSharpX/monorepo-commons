@@ -1,6 +1,6 @@
 package com.onebank.taskmaster.notifier.controller;
 
-import com.onebank.taskmaster.notifier.model.CreateTaskNotificationRequest;
+import com.onebank.taskmaster.notifier.model.TaskNotificationRequest;
 import com.onebank.taskmaster.notifier.service.CreateNotification;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +20,7 @@ public class TaskNotifierController {
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.ACCEPTED)
-	public void createNotification(@Valid @RequestBody CreateTaskNotificationRequest request) {
+	public void createNotification(@Valid @RequestBody TaskNotificationRequest request) {
 		createNotification.create(request);
 	}
 }

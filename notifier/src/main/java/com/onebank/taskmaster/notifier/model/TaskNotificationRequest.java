@@ -19,11 +19,12 @@ import lombok.Setter;
 @JsonSubTypes({
         @JsonSubTypes.Type(value = TaskCreatedNotificationRequest.class, name = "TASK_CREATED"),
         @JsonSubTypes.Type(value = TaskDeletedNotificationRequest.class, names = "TASK_DELETED"),
-        @JsonSubTypes.Type(value = TaskCompletedNotificationRequest.class, names = "TASK_COMPLETED")
+        @JsonSubTypes.Type(value = TaskCompletedNotificationRequest.class, names = "TASK_COMPLETED"),
+        @JsonSubTypes.Type(value = TaskCompletionReminderNotificationRequest.class, names = "TASK_COMPLETION_REMINDER")
 })
 @Getter
 @Setter
-public class CreateTaskNotificationRequest {
+public class TaskNotificationRequest {
     @JsonIgnore
     private Long id;
     @NotificationChannelCode

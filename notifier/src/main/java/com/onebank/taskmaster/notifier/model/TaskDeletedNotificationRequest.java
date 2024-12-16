@@ -5,6 +5,6 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class TaskDeletedNotificationRequest extends CreateTaskNotificationRequest {
+public class TaskDeletedNotificationRequest extends TaskNotificationRequest {
     private String taskTitle;
 }
