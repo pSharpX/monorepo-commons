@@ -43,19 +43,19 @@ podman pull postgres:latest
 ```
 Run a container
 ```
-docker run --name some-postgres -p 5432:5432 -e POSTGRES_DB=controlplane_db -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=mysecretpassword -d postgres
-podman run --name some-postgres -p 5432:5432 -e POSTGRES_DB=controlplane_db -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+docker run --name some-postgres -p 5432:5432 -e POSTGRES_DB=notifier_db -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+podman run --name some-postgres -p 5432:5432 -e POSTGRES_DB=notifier_db -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=mysecretpassword -d postgres
 ``` 
 Connect to the postgres instance and check connectivity
 ```
 docker run -it --rm postgres:latest psql -h <host> -U <username> -d <database_name>
-podman run -it --rm postgres:latest psql -h localhost -U admin -d controlplane_db
+podman run -it --rm postgres:latest psql -h localhost -U admin -d notifier_db
 ```  
 Download the project from the GitHub repo, get a copy from the src/main/resources/application.properties.template for local use and put in /src/main/resources.
 
 In the application.properties modify these properties as needed to match your sqlserver configuration:
 ``` 
-spring.datasource.url=jdbc:postgresql://localhost:5432/controlplane_db
+spring.datasource.url=jdbc:postgresql://localhost:5432/notifier_db
 spring.datasource.username=
 spring.datasource.password=
 spring.datasource.driver-class-name=org.postgresql.Driver

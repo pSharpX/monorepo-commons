@@ -22,7 +22,12 @@ public class TaskCreatedContentProvider extends TaskMessageContentProvider<TaskC
 
     @Override
     public EmailNotificationMessage getEmailMessageContent(TaskCreatedNotificationRequest request, NotificationTemplateDetails templateDetails) {
-        return super.getEmailMessageContent(request, templateDetails);
+        EmailNotificationMessage notificationMessage = super.getEmailMessageContent(request, templateDetails);
+        notificationMessage.getVars().put("task_title", request.getTaskTitle());
+        notificationMessage.getVars().put("task_description", request.getTaskDescription());
+        notificationMessage.getVars().put("task_due_date", request.getTaskDueDate());
+        notificationMessage.getVars().put("task_priority", request.getTaskPriority());
+        return notificationMessage;
     }
 
     @Override

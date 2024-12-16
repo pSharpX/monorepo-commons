@@ -1,10 +1,12 @@
 package com.onebank.taskmaster.notifier.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+@Schema(description = "TaskCreated Request")
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class TaskCreatedNotificationRequest extends TaskNotificationRequest {
@@ -12,4 +14,7 @@ public class TaskCreatedNotificationRequest extends TaskNotificationRequest {
     private Long taskId;
     @NotEmpty
     private String taskTitle;
+    private String taskDescription;
+    private String taskDueDate;
+    private String taskPriority;
 }
