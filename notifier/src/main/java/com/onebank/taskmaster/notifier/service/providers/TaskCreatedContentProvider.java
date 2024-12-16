@@ -1,53 +1,42 @@
 package com.onebank.taskmaster.notifier.service.providers;
 
+import com.onebank.taskmaster.notifier.model.NotificationTemplateDetails;
 import com.onebank.taskmaster.notifier.model.TaskCreatedNotificationRequest;
-import com.onebank.taskmaster.notifier.model.TaskNotificationType;
 import com.onebank.taskmaster.notifier.model.senders.EmailNotificationMessage;
 import com.onebank.taskmaster.notifier.model.senders.InAppNotificationMessage;
 import com.onebank.taskmaster.notifier.model.senders.PushNotificationMessage;
 import com.onebank.taskmaster.notifier.model.senders.SmsNotificationMessage;
-import lombok.RequiredArgsConstructor;
+import com.onebank.taskmaster.notifier.service.NotificationTemplateService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
-
 @Service
-@RequiredArgsConstructor
 @Slf4j
-public class TaskCreatedContentProvider implements MessageContentProvider<TaskCreatedNotificationRequest> {
+public class TaskCreatedContentProvider extends TaskMessageContentProvider<TaskCreatedNotificationRequest> {
 
-    @Override
-    public EmailNotificationMessage getEmailMessageContent(TaskCreatedNotificationRequest request) {
-        EmailNotificationMessage notificationMessage = new EmailNotificationMessage();
-        notificationMessage.setId(request.getId());
-        notificationMessage.setType(TaskNotificationType.TASK_CREATED);
-        notificationMessage.setUser(request.getUser());
-        notificationMessage.setRecipientEmail(request.getUser());
-        notificationMessage.setRecipientName("Christian Rivera");
-        notificationMessage.setTitle(request.getTitle());
-        notificationMessage.setMessage(request.getMessage());
-        notificationMessage.setTemplateName("TEMPLATE_NAME");
-        notificationMessage.setVars(Map.of(
-                "application_name", "",
-                "current_year", "",
-                "username", "Christian Rivera"
-        ));
-        return notificationMessage;
+    @Autowired
+    public TaskCreatedContentProvider(NotificationTemplateService templateService) {
+        super(templateService);
     }
 
     @Override
-    public PushNotificationMessage getPushMessageContent(TaskCreatedNotificationRequest request) {
-        throw new UnsupportedOperationException();
+    public EmailNotificationMessage getEmailMessageContent(TaskCreatedNotificationRequest request, NotificationTemplateDetails templateDetails) {
+        return super.getEmailMessageContent(request, templateDetails);
     }
 
     @Override
-    public SmsNotificationMessage getSmsMessageContent(TaskCreatedNotificationRequest request) {
-        throw new UnsupportedOperationException();
+    public PushNotificationMessage getPushMessageContent(TaskCreatedNotificationRequest request, NotificationTemplateDetails templateDetails) {
+        return super.getPushMessageContent(request, templateDetails);
     }
 
     @Override
-    public InAppNotificationMessage getInAppMessageContent(TaskCreatedNotificationRequest request) {
-        throw new UnsupportedOperationException();
+    public SmsNotificationMessage getSmsMessageContent(TaskCreatedNotificationRequest request, NotificationTemplateDetails templateDetails) {
+        return super.getSmsMessageContent(request, templateDetails);
+    }
+
+    @Override
+    public InAppNotificationMessage getInAppMessageContent(TaskCreatedNotificationRequest request, NotificationTemplateDetails templateDetails) {
+        return super.getInAppMessageContent(request, templateDetails);
     }
 }

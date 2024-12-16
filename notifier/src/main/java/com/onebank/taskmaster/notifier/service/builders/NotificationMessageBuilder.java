@@ -4,6 +4,6 @@ import com.onebank.taskmaster.notifier.model.TaskNotificationRequest;
 import com.onebank.taskmaster.notifier.model.senders.NotificationMessage;
 import lombok.NonNull;
 
-public interface BuildNotification <T extends TaskNotificationRequest> {
+public interface NotificationMessageBuilder<T extends TaskNotificationRequest> {
     NotificationMessage build(@NonNull T request);
 }

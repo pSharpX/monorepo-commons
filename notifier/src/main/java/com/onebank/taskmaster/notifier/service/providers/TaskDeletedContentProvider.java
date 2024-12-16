@@ -1,36 +1,42 @@
 package com.onebank.taskmaster.notifier.service.providers;
 
+import com.onebank.taskmaster.notifier.model.NotificationTemplateDetails;
 import com.onebank.taskmaster.notifier.model.TaskDeletedNotificationRequest;
 import com.onebank.taskmaster.notifier.model.senders.EmailNotificationMessage;
 import com.onebank.taskmaster.notifier.model.senders.InAppNotificationMessage;
 import com.onebank.taskmaster.notifier.model.senders.PushNotificationMessage;
 import com.onebank.taskmaster.notifier.model.senders.SmsNotificationMessage;
-import lombok.RequiredArgsConstructor;
+import com.onebank.taskmaster.notifier.service.NotificationTemplateService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 @Slf4j
-public class TaskDeletedContentProvider implements MessageContentProvider<TaskDeletedNotificationRequest> {
+public class TaskDeletedContentProvider extends TaskMessageContentProvider<TaskDeletedNotificationRequest> {
 
-    @Override
-    public EmailNotificationMessage getEmailMessageContent(TaskDeletedNotificationRequest request) {
-        throw new UnsupportedOperationException();
+    @Autowired
+    public TaskDeletedContentProvider(NotificationTemplateService templateService) {
+        super(templateService);
     }
 
     @Override
-    public PushNotificationMessage getPushMessageContent(TaskDeletedNotificationRequest request) {
-        throw new UnsupportedOperationException();
+    public EmailNotificationMessage getEmailMessageContent(TaskDeletedNotificationRequest request, NotificationTemplateDetails templateDetails) {
+        return super.getEmailMessageContent(request, templateDetails);
     }
 
     @Override
-    public SmsNotificationMessage getSmsMessageContent(TaskDeletedNotificationRequest request) {
-        throw new UnsupportedOperationException();
+    public PushNotificationMessage getPushMessageContent(TaskDeletedNotificationRequest request, NotificationTemplateDetails templateDetails) {
+        return super.getPushMessageContent(request, templateDetails);
     }
 
     @Override
-    public InAppNotificationMessage getInAppMessageContent(TaskDeletedNotificationRequest request) {
-        throw new UnsupportedOperationException();
+    public SmsNotificationMessage getSmsMessageContent(TaskDeletedNotificationRequest request, NotificationTemplateDetails templateDetails) {
+        return super.getSmsMessageContent(request, templateDetails);
+    }
+
+    @Override
+    public InAppNotificationMessage getInAppMessageContent(TaskDeletedNotificationRequest request, NotificationTemplateDetails templateDetails) {
+        return super.getInAppMessageContent(request, templateDetails);
     }
 }

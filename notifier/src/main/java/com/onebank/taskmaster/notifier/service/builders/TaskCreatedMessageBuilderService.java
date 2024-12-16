@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 @Slf4j
 @SuppressWarnings("unchecked")
-public class TaskCreatedNotificationBuilderService implements BuildNotification<TaskCreatedNotificationRequest> {
+public class TaskCreatedMessageBuilderService implements NotificationMessageBuilder<TaskCreatedNotificationRequest> {
     private final ContentProviderResolver contentProviderResolver;
 
     @Override

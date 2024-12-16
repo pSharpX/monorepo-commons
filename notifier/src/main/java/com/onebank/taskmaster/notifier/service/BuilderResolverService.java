@@ -1,10 +1,11 @@
 package com.onebank.taskmaster.notifier.service;
 
 import com.onebank.taskmaster.notifier.model.TaskNotificationType;
-import com.onebank.taskmaster.notifier.service.builders.BuildNotification;
-import com.onebank.taskmaster.notifier.service.builders.TaskCompletedNotificationBuilderService;
-import com.onebank.taskmaster.notifier.service.builders.TaskCreatedNotificationBuilderService;
-import com.onebank.taskmaster.notifier.service.builders.TaskDeletedNotificationBuilderService;
+import com.onebank.taskmaster.notifier.service.builders.NotificationMessageBuilder;
+import com.onebank.taskmaster.notifier.service.builders.TaskCompletedMessageBuilderService;
+import com.onebank.taskmaster.notifier.service.builders.TaskCompletionReminderMessageBuilderService;
+import com.onebank.taskmaster.notifier.service.builders.TaskCreatedMessageBuilderService;
+import com.onebank.taskmaster.notifier.service.builders.TaskDeletedMessageBuilderService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,17 +16,19 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @SuppressWarnings("rawtypes")
 public class BuilderResolverService implements BuilderResolver {
-    private final TaskCreatedNotificationBuilderService taskCreatedNotificationBuilderService;
-    private final TaskDeletedNotificationBuilderService taskDeletedNotificationBuilderService;
-    private final TaskCompletedNotificationBuilderService taskCompletedNotificationBuilderService;
+    private final TaskCreatedMessageBuilderService taskCreatedMessageBuilderService;
+    private final TaskDeletedMessageBuilderService taskDeletedMessageBuilderService;
+    private final TaskCompletedMessageBuilderService taskCompletedMessageBuilderService;
+    private final TaskCompletionReminderMessageBuilderService taskCompletionReminderMessageBuilderService;
 
     @Override
-    public BuildNotification resolve(@NonNull TaskNotificationType notificationType) {
+    public NotificationMessageBuilder resolve(@NonNull TaskNotificationType notificationType) {
         return switch (notificationType) {
-            case TASK_CREATED -> taskCreatedNotificationBuilderService;
-            case TASK_DELETED -> taskDeletedNotificationBuilderService;
-            case TASK_COMPLETED -> taskCompletedNotificationBuilderService;
-            case TASK_COMPLETION_REMINDER, TASK_REMINDER_CONFIGURED -> throw new UnsupportedOperationException();
+            case TASK_CREATED -> taskCreatedMessageBuilderService;
+            case TASK_DELETED -> taskDeletedMessageBuilderService;
+            case TASK_COMPLETED -> taskCompletedMessageBuilderService;
+            case TASK_COMPLETION_REMINDER -> taskCompletionReminderMessageBuilderService;
+            case TASK_REMINDER_CONFIGURED -> throw new UnsupportedOperationException();
         };
     }
 }

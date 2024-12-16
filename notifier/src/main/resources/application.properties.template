@@ -44,6 +44,34 @@ task-master.notification.pubsub.topic=
 task-master.notification.pubsub.subscriptionId=
 task-master.notification.pubsub.serviceAccountKeyPath=classpath:<file_name>
 
+# task completion reminder
+task-master.channel.email.templates[0].notificationType=TASK_COMPLETION_REMINDER
+task-master.channel.email.templates[0].templateName=DevTaskMaster_TaskCompletionReminder
+task-master.channel.email.templates[0].placeholder.APPLICATION_NAME=application_name
+task-master.channel.email.templates[0].placeholder.CURRENT_YEAR=current_year
+task-master.channel.email.templates[0].placeholder.USERNAME=username
+
+# task created
+task-master.channel.email.templates[1].notificationType=TASK_CREATED
+task-master.channel.email.templates[1].templateName=DevTaskMaster_TaskCreated
+task-master.channel.email.templates[1].placeholder.APPLICATION_NAME=application_name
+task-master.channel.email.templates[1].placeholder.CURRENT_YEAR=current_year
+task-master.channel.email.templates[1].placeholder.USERNAME=username
+
+# task deleted
+task-master.channel.email.templates[2].notificationType=TASK_DELETED
+task-master.channel.email.templates[2].templateName=DevTaskMaster_TaskDeleted
+task-master.channel.email.templates[2].placeholder.APPLICATION_NAME=application_name
+task-master.channel.email.templates[2].placeholder.CURRENT_YEAR=current_year
+task-master.channel.email.templates[2].placeholder.USERNAME=username
+
+# task completed
+task-master.channel.email.templates[3].notificationType=TASK_COMPLETED
+task-master.channel.email.templates[3].templateName=DevTaskMaster_TaskCompleted
+task-master.channel.email.templates[3].placeholder.APPLICATION_NAME=application_name
+task-master.channel.email.templates[3].placeholder.CURRENT_YEAR=current_year
+task-master.channel.email.templates[3].placeholder.USERNAME=username
+
 management.endpoints.web.base-path=/actuator
 management.endpoints.web.exposure.include=*
 management.endpoints.web.exposure.exclude=env,auditevents
