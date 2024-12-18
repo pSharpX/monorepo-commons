@@ -1,4 +1,4 @@
-# controlplane
+# taskmaster-notifier
 
 ## Introduction
 The taskmaster-notifier project contains all services for performing and publishing different notifications for tasks management and scheduler.
@@ -63,7 +63,7 @@ spring.datasource.driver-class-name=org.postgresql.Driver
 
 Do not upload the local version of the application.properties to the repository. Add to .gitignore file.
 
-## 1. Configure Broker (Notifications)
+## 1. Configure Broker
 Install docker and from docker hub pull one of the following supported brokers:
 
 ### 1.1 kafka
