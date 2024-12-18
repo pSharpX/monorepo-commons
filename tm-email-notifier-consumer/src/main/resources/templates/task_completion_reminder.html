@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Completion Reminder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background-color: #ffc107;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .content {
+            padding: 20px;
+            text-align: left;
+            line-height: 1.6;
+        }
+        .content h2 {
+            color: #ffc107;
+            margin-top: 0;
+        }
+        .task-details {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .task-details p {
+            margin: 5px 0;
+        }
+        .button-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .button {
+            background-color: #ffc107;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .button:hover {
+            background-color: #e0a800;
+        }
+        .footer {
+            background-color: #f4f4f9;
+            text-align: center;
+            padding: 10px;
+            font-size: 12px;
+            color: #666;
+        }
+        .footer a {
+            color: #ffc107;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="email-container">
+    <div class="header">
+        <h1>Task Completion Reminder</h1>
+    </div>
+    <div class="content">
+        <h2>Hello {{username}},</h2>
+        <p>This is a friendly reminder about an upcoming deadline for the following task:</p>
+        <div class="task-details">
+            <p><strong>Task Name:</strong> {{task_title}}</p>
+            <p><strong>Assigned To:</strong> {{task_assignee_name}}</p>
+            <p><strong>Due Date:</strong> {{task_due_date}}</p>
+            <p><strong>Priority:</strong> {{task_priority}}</p>
+        </div>
+        <p>Please ensure that this task is completed on time to avoid any delays in your project timeline.</p>
+        <p>If you need to review or update the task details, click the button below:</p>
+        <div class="button-container">
+            <a href="[Task Link]" class="button">View Task</a>
+        </div>
+        <p>We appreciate your attention to this task and are here to support you if you have any questions.</p>
+    </div>
+    <div class="footer">
+        <p>© {{current_year}} {{application_name}}. All rights reserved.</p>
+        <p><a href="[Privacy Policy Link]">Privacy Policy</a> | <a href="[Unsubscribe Link]">Unsubscribe</a></p>
+    </div>
+</div>
+</body>
+</html>
