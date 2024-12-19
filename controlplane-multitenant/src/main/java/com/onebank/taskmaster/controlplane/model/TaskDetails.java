@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -17,4 +19,6 @@ public class TaskDetails {
 	private List<String> tags;
 	private Integer weight;
 	private TaskStatus status;
+	private LocalDate dueDate;
+	private LocalDateTime completionDate;
 }
