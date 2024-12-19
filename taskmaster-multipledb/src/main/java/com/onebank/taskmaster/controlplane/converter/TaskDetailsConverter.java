@@ -17,6 +17,8 @@ public class TaskDetailsConverter implements ConvertTo<TaskEntity, TaskDetails> 
                 .weight(input.getWeight())
                 .tags(input.getTags().stream().map(TagEntity::getName).toList())
                 .status(input.getProgressStatus())
+                .dueDate(input.getDueDate())
+                .completionDate(input.getCompletionDate())
                 .build();
     }
 }

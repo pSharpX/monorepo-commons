@@ -17,6 +17,7 @@ public class CreateTaskRequestConverter implements ConvertTo<CreateTaskRequest, 
                 .weight(input.getWeight())
                 .progressStatus(TaskStatus.TODO)
                 .status(input.getStatus())
+                .dueDate(input.getDueDate())
                 .build();
     }
 }

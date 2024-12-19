@@ -16,6 +16,7 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -56,6 +57,12 @@ public class TaskEntity {
 
     @NotNull
     private TaskCreationStatus status = TaskCreationStatus.PENDING;
+
+    @Column
+    private LocalDate dueDate;
+
+    @Column(insertable = false)
+    private LocalDateTime completionDate;
 
     @Column(columnDefinition = "boolean default true", insertable = false)
     private Boolean enabled = true;
