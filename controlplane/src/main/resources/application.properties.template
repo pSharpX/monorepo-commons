@@ -1,5 +1,8 @@
 
 control-plane.database.enabled=false
+control-plane.cache.enabled=false
+control-plane.notification.enabled=false
+
 # use only if database is enabled
 spring.datasource.hikari.connectionTimeout=30000
 spring.datasource.hikari.idleTimeout=600000
@@ -10,7 +13,6 @@ spring.datasource.password=
 spring.datasource.driver-class-name=org.postgresql.Driver
 spring.jpa.hibernate.ddl-auto=update
 
-control-plane.cache.enabled=false
 # use only if cache is enabled
 control-plane.cache.engine=memcached #[redis,redis-cluster,memcached]
 # use only if redis cache is enabled
@@ -18,3 +20,6 @@ spring.redis.host=localhost
 spring.redis.port=6380
 spring.redis.ssl=false
 spring.redis.connect-timeout=100
+
+# use only if notification is enabled
+control-plane.notification.baseUrl=http://localhost:8081

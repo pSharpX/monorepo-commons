@@ -15,6 +15,7 @@ import org.springframework.validation.annotation.Validated;
 public class ControlPlaneConfigProperties {
     private Database database;
     private Cache cache;
+    private Notification notification;
 
     @Data
     @AllArgsConstructor
@@ -27,6 +28,13 @@ public class ControlPlaneConfigProperties {
     @AllArgsConstructor
     @NoArgsConstructor
     static class Cache {
+        private Boolean enabled = false;
+    }
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    static class Notification {
         private Boolean enabled = false;
     }
 }
