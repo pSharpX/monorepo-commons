@@ -1,5 +1,7 @@
 package com.onebank.taskmaster.controlplane.model;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -17,4 +19,6 @@ public class TaskDetails {
 	private List<String> tags;
 	private Integer weight;
 	private TaskStatus status;
+	private LocalDate dueDate;
+	private LocalDateTime completionDate;
 }
