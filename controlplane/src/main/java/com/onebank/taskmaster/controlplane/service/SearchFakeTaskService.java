@@ -2,6 +2,7 @@ package com.onebank.taskmaster.controlplane.service;
 
 import java.util.List;
 
+import com.onebank.taskmaster.controlplane.config.ConditionalOnMockEnabled;
 import com.onebank.taskmaster.controlplane.model.SearchTaskParam;
 import com.onebank.taskmaster.controlplane.model.SearchTaskResponse;
 import com.onebank.taskmaster.controlplane.model.TaskDetails;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@ConditionalOnMockEnabled
 public class SearchFakeTaskService implements SearchTask {
 
 	@Override

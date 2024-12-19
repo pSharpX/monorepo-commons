@@ -1,8 +1,10 @@
 package com.onebank.taskmaster.controlplane.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -18,6 +20,8 @@ public class CreateTaskRequest {
 	private String taskTitle;
 	@NotBlank
 	private String taskDescription;
+	@FutureOrPresent
+	private LocalDate dueDate;
 	private List<@NotBlank String> tags = new ArrayList<>();
 	private Integer weight = 0;
 	@Setter(AccessLevel.NONE)

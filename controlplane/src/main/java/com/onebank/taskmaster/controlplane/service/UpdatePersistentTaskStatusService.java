@@ -1,5 +1,6 @@
 package com.onebank.taskmaster.controlplane.service;
 
+import com.onebank.taskmaster.controlplane.config.ConditionalOnDatabaseEnabled;
 import com.onebank.taskmaster.controlplane.entity.TaskEntity;
 import com.onebank.taskmaster.controlplane.exceptions.ResourceNotFoundException;
 import com.onebank.taskmaster.controlplane.exceptions.utils.ExceptionConstantsUtils;
@@ -8,8 +9,11 @@ import com.onebank.taskmaster.controlplane.repository.TaskRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
+@Service
 @RequiredArgsConstructor
+@ConditionalOnDatabaseEnabled
 @Slf4j
 public class UpdatePersistentTaskStatusService implements UpdateTaskStatus {
     private final TaskRepository taskRepository;

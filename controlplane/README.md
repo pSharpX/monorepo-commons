@@ -61,8 +61,6 @@ spring.datasource.password=
 spring.datasource.driver-class-name=org.postgresql.Driver
 ```
 
-Do not upload the local version of the application.properties to the repository. Add to .gitignore file.
-
 ## 2. Configure Cache
 Install docker and from docker hub pull one of the following supported cache tools:
 
@@ -95,7 +93,7 @@ spring.datasource.password=<password>
 spring.datasource.driverClassName=com.microsoft.sqlserver.jdbc.SQLServerDriver
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.SQLServer2012Dialect
 ```
-
+Do not upload the local version of the application.properties to the repository. Add to .gitignore file.
 
 ### Build and Test
 For building and running test:

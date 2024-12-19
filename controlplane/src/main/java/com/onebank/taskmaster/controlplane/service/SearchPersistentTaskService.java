@@ -1,5 +1,6 @@
 package com.onebank.taskmaster.controlplane.service;
 
+import com.onebank.taskmaster.controlplane.config.ConditionalOnDatabaseEnabled;
 import com.onebank.taskmaster.controlplane.converter.ConvertTo;
 import com.onebank.taskmaster.controlplane.entity.TaskEntity;
 import com.onebank.taskmaster.controlplane.model.SearchTaskParam;
@@ -9,10 +10,13 @@ import com.onebank.taskmaster.controlplane.model.TaskStatus;
 import com.onebank.taskmaster.controlplane.repository.TaskRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 @RequiredArgsConstructor
+@ConditionalOnDatabaseEnabled
 public class SearchPersistentTaskService implements SearchTask {
 	private final TaskRepository taskRepository;
 	private final ConvertTo<TaskEntity, TaskDetails> converter;
